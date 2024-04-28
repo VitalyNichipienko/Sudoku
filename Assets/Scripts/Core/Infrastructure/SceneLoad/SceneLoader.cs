@@ -16,15 +16,11 @@ namespace Core.Infrastructure.SceneLoad
         private bool _canBeLoaded;
 
         [Inject]
-        public SceneLoader(ICoroutineRunner coroutineRunner)
-        {
+        public SceneLoader(ICoroutineRunner coroutineRunner) => 
             _coroutineRunner = coroutineRunner;
-        }
 
-        public void Load(LoadingScenes scene, Action onLoaded = null)
-        {
+        public void Load(LoadingScenes scene, Action onLoaded = null) => 
             _coroutineRunner.StartCoroutine(LoadScene(scene.ToString(), onLoaded));
-        }
 
         private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {

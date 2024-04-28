@@ -18,10 +18,8 @@ namespace Core.Infrastructure.States
             _saveManager = saveManager;
         }
         
-        public void Enter()
-        {
+        public void Enter() => 
             LoadData();
-        }
 
         private void LoadData()
         {

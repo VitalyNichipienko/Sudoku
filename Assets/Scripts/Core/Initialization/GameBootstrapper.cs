@@ -10,10 +10,8 @@ namespace Core.Initialization
         private GameStateMachine<IState> _stateMachine;
 
         [Inject]
-        private void Construct(GameStateMachine<IState> stateMachine)
-        {
+        private void Construct(GameStateMachine<IState> stateMachine) => 
             _stateMachine = stateMachine;
-        }
 
         private void Start() => 
             _stateMachine.Enter<BootstrapState>();

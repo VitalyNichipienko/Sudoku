@@ -8,14 +8,10 @@ namespace Core.Infrastructure.States
         private readonly GameStateMachine<IState> _stateMachine;
 
         [Inject]
-        public BootstrapState(GameStateMachine<IState> stateMachine)
-        {
+        public BootstrapState(GameStateMachine<IState> stateMachine) => 
             _stateMachine = stateMachine;
-        }
 
-        public void Enter()
-        { 
+        public void Enter() => 
             _stateMachine.Enter<LoadDataState>();
-        }
     }
 }
