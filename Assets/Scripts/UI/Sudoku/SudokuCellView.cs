@@ -1,4 +1,4 @@
-using System;
+using Sudoku;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +8,12 @@ namespace UI.Sudoku
     {
         [SerializeField] private TMP_InputField inputField;
 
-        public int Value => Convert.ToInt32(inputField.text);
+        public TMP_InputField InputField => inputField;
+        
+        public void Init(Cell cell)
+        {
+            inputField.text = cell.Value != 0 ? cell.Value.ToString() : "";
+            inputField.interactable = cell.IsEditable;
+        }
     }
 }

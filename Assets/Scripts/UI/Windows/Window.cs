@@ -1,12 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Windows
 {
-    public abstract class Window : MonoBehaviour
+    public class Window : MonoBehaviour
     {
         [SerializeField] protected Canvas root;
-        
-        public abstract void Show();
-        public abstract void Hide();
+        [SerializeField] protected GraphicRaycaster raycaster;
+
+        public virtual void Show()
+        {
+            raycaster.enabled = true;
+            root.enabled = true;
+        }
+
+        public virtual void Hide()
+        {
+            raycaster.enabled = false;
+            root.enabled = false;
+        }
     }
 }
