@@ -52,7 +52,8 @@ namespace Core.Initialization
                 [typeof(BootstrapState)] = Container.Instantiate<BootstrapState>(),
                 [typeof(LoadDataState)] = Container.Instantiate<LoadDataState>(),
                 [typeof(LoadSceneState)] = Container.Instantiate<LoadSceneState>(),
-                [typeof(MenuState)] = Container.Instantiate<MenuState>()
+                [typeof(MenuState)] = Container.Instantiate<MenuState>(),
+                [typeof(GameState)] = Container.Instantiate<GameState>()
             };
         
             stateMachine.FillStateDictionary(states);

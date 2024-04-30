@@ -11,21 +11,23 @@ namespace Sudoku
         private SudokuField _sudokuField;
         private SudokuField _solution;
         private SudokuFieldView _sudokuFieldView;
+        private GameWindowView _gameWindowView;
 
         [Inject]
         private void Construct(SudokuGenerator sudokuGenerator, SudokuFieldView sudokuFieldView, GameWindowView gameWindowView)
         {
             _sudokuGenerator = sudokuGenerator;
             _sudokuFieldView = sudokuFieldView;
-            
-            gameWindowView.CheckButton.onClick.AddListener(CheckSolution);
+            _gameWindowView = gameWindowView;
         }
 
-        public void Init(int cellsToHide)
+        public void Init()
         {
-            _sudokuGenerator.GetSudokuField(cellsToHide, out _sudokuField, out _solution);
+            _sudokuGenerator.GetSudokuField(10, out _sudokuField, out _solution);
             
             FillSudokuField();
+            
+            _gameWindowView.CheckButton.onClick.AddListener(CheckSolution);
         }
 
         private void FillSudokuField()
@@ -87,13 +89,13 @@ namespace Sudoku
                     Cell cell = _sudokuField[row, col];
                     if (cell.Value != _solution[row, col].Value)
                     {
-                        Debug.Log("Solution is false");
+                        _gameWindowView.ShowResult(false);
                         return;
                     }
                 }
             }
 
-            Debug.Log("Solution is true");
+            _gameWindowView.ShowResult(true);
         }
     }
 }
