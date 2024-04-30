@@ -15,7 +15,7 @@ namespace UI.Windows.Menu
         }
 
         private void BindMenuWindowView() =>
-            Container.Bind<MenuWindowView>().FromComponentInHierarchy(menuWindowView).AsSingle().NonLazy();
+            Container.Bind<MenuWindowView>().FromInstance(menuWindowView).AsSingle().NonLazy();
 
         private void BindMenuWindowModel() =>
             Container.Bind<MenuWindowModel>().AsSingle().NonLazy();

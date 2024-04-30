@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Core.Data;
+using Core.Infrastructure;
 using Core.Infrastructure.SceneLoad;
 using Core.Infrastructure.Services.CoroutineRunner;
 using Core.Infrastructure.StateMachine;
 using Core.Infrastructure.States;
+using Core.Infrastructure.UiManagement;
 using UnityEngine;
 using Zenject;
 
@@ -17,12 +19,20 @@ namespace Core.Initialization
         
         public override void InstallBindings()
         {
-            BindSaveManager();
             BindCoroutineRunner();
+            BindCommonFactory();
+            BindUiManager();
+            BindSaveManager();
             BindSceneLoader();
             BindGameStateMachine();
         }
+
+        private void BindCommonFactory() => 
+            Container.Bind<CommonFactory>().FromInstance(new CommonFactory(Container)).AsSingle();
         
+        private void BindUiManager() => 
+            Container.Bind<UiManager>().AsSingle().NonLazy();
+
         private void BindSaveManager() => 
             Container.Bind<SaveManager>().FromInstance(saveManager).AsSingle().NonLazy();
         
@@ -42,7 +52,7 @@ namespace Core.Initialization
                 [typeof(BootstrapState)] = Container.Instantiate<BootstrapState>(),
                 [typeof(LoadDataState)] = Container.Instantiate<LoadDataState>(),
                 [typeof(LoadSceneState)] = Container.Instantiate<LoadSceneState>(),
-                [typeof(GameLoopState)] = Container.Instantiate<GameLoopState>()
+                [typeof(MenuState)] = Container.Instantiate<MenuState>()
             };
         
             stateMachine.FillStateDictionary(states);

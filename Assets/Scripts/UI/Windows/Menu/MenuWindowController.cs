@@ -8,13 +8,15 @@ namespace UI.Windows.Menu
         private MenuWindowModel _menuWindowModel;
 
         [Inject]
-        private void Construct()
+        private void Construct(MenuWindowView menuWindowView, MenuWindowModel menuWindowModel)
         {
+            _menuWindowView = menuWindowView;
+            _menuWindowModel = menuWindowModel;
         }
         
         public void Initialize()
         {
-            
+            _menuWindowView.NewGameButton.onClick.AddListener(_menuWindowModel.StartNewGame);
         }
     }
 }

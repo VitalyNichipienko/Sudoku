@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Core.Infrastructure.Services.CoroutineRunner;
+using Core.Infrastructure.UiManagement;
+using UI.Windows.Load;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -12,12 +14,15 @@ namespace Core.Infrastructure.SceneLoad
         private const float SceneLoadOperationMaxProgress = 0.9f;
         
         private readonly ICoroutineRunner _coroutineRunner;
-
+        private UiManager _uiManager;
         private bool _canBeLoaded;
 
         [Inject]
-        public SceneLoader(ICoroutineRunner coroutineRunner) => 
+        public SceneLoader(ICoroutineRunner coroutineRunner, UiManager uiManager)
+        {
             _coroutineRunner = coroutineRunner;
+            _uiManager = uiManager;
+        }
 
         public void Load(LoadingScenes scene, Action onLoaded = null) => 
             _coroutineRunner.StartCoroutine(LoadScene(scene.ToString(), onLoaded));
@@ -26,6 +31,9 @@ namespace Core.Infrastructure.SceneLoad
         {
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
             waitNextScene.allowSceneActivation = false;
+            
+            _uiManager.ShowWindow<LoadingWindow>();
+            _uiManager.Clear();
             
             float progress = 0;
  

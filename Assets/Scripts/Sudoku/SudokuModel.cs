@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Sudoku
 {
-    public class SudokuModel : IInitializable
+    public class SudokuModel
     {
         private SudokuGenerator _sudokuGenerator;
         private SudokuField _sudokuField;
@@ -21,9 +21,9 @@ namespace Sudoku
             gameWindowView.CheckButton.onClick.AddListener(CheckSolution);
         }
 
-        public void Initialize()
+        public void Init(int cellsToHide)
         {
-            _sudokuGenerator.GetSudokuField(out _sudokuField, out _solution);
+            _sudokuGenerator.GetSudokuField(cellsToHide, out _sudokuField, out _solution);
             
             FillSudokuField();
         }

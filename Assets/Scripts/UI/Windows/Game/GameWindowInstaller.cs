@@ -15,7 +15,7 @@ namespace UI.Windows.Game
         }
 
         private void BindGameWindowView() =>
-            Container.Bind<GameWindowView>().FromComponentInHierarchy(gameWindowView).AsSingle().NonLazy();
+            Container.Bind<GameWindowView>().FromInstance(gameWindowView).AsSingle().NonLazy();
 
         private void BindGameWindowModel() =>
             Container.Bind<GameWindowModel>().AsSingle().NonLazy();

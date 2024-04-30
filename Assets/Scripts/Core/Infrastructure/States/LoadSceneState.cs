@@ -22,6 +22,6 @@ namespace Core.Infrastructure.States
             _sceneLoader.Load(scene, OnLoaded);
 
         private void OnLoaded() => 
-            _stateMachine.Enter<GameLoopState>();
+            _stateMachine.Enter<MenuState>();
     }
 }

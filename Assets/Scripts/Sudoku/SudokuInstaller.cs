@@ -22,6 +22,6 @@ namespace Sudoku
             Container.Bind<SudokuGenerator>().AsSingle().NonLazy();
 
         private void BindSudokuController() => 
-            Container.Bind<IInitializable>().To<SudokuModel>().AsSingle().NonLazy();
+            Container.Bind<SudokuModel>().AsSingle().NonLazy();
     }
 }

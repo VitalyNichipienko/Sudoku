@@ -6,12 +6,14 @@ namespace Sudoku
     {
         private const int ShuffleCount = 10;
         private Cell[,] _sudokuField = new Cell[BlockSize * BlockSize, BlockSize * BlockSize];
-        private int _cellsToHide = 1;
+        private int _cellsToHide;
         
         private static int BlockSize => Constants.BlockSize;
         
-        public void GetSudokuField(out SudokuField sudokuField, out SudokuField solution)
+        public void GetSudokuField(int cellsToHide, out SudokuField sudokuField, out SudokuField solution)
         {
+            _cellsToHide = cellsToHide;
+            
             GenerateMap();
 
             for (int i = 0; i < ShuffleCount; i++)

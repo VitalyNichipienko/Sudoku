@@ -1,19 +1,22 @@
-using UnityEngine;
+using Core.Infrastructure.UiManagement;
+using UI.Windows.Game;
+using Zenject;
 
 namespace UI.Windows.Menu
 {
-    public class MenuWindowModel : MonoBehaviour
+    public class MenuWindowModel
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        private UiManager _uiManager;
 
-        // Update is called once per frame
-        void Update()
+        [Inject]
+        private void Construct(UiManager uiManager)
         {
+            _uiManager = uiManager;
+        }
         
+        public void StartNewGame()
+        {
+            _uiManager.ShowWindow<GameWindowView>();
         }
     }
 }

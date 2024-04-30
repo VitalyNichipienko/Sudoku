@@ -1,5 +1,4 @@
-﻿using Sudoku;
-using Zenject;
+﻿using Zenject;
 
 namespace UI.Windows.Game
 {
@@ -17,6 +16,7 @@ namespace UI.Windows.Game
         
         public void Initialize()
         {
+            _gameWindowView.MenuButton.onClick.AddListener(_gameWindowModel.ReturnToMenu);
         }
     }
 }

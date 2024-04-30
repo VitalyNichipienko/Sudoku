@@ -2,9 +2,9 @@
 using UI.Windows.Menu;
 using Zenject;
 
-namespace UI.Windows.Game
+namespace Core.Infrastructure.States
 {
-    public class GameWindowModel
+    public class MenuState : IState
     {
         private UiManager _uiManager;
 
@@ -14,14 +14,9 @@ namespace UI.Windows.Game
             _uiManager = uiManager;
         }
         
-        public void ReturnToMenu()
+        public void Enter()
         {
             _uiManager.ShowWindow<MenuWindowView>();
-        }
-        
-        public void StartGame()
-        {
-            
         }
     }
 }
