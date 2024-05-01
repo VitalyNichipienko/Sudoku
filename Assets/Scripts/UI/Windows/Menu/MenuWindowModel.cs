@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core.Data;
 using Core.Infrastructure.StateMachine;
 using Core.Infrastructure.States;
@@ -62,21 +63,19 @@ namespace UI.Windows.Menu
         public void OnLoadFieldPanelShow()
         {
             _menuWindowView.LoadFieldPanel.AddButtonsToWindow();
+    
+            List<SaveItem> saveItemsCopy = new List<SaveItem>(_menuWindowView.LoadFieldPanel.SaveItems);
 
-            for (int i = 0; i < _menuWindowView.LoadFieldPanel.SaveItems.Count; i++)
+            foreach (var saveItem in saveItemsCopy)
             {
-                _menuWindowView.LoadFieldPanel.SaveItems[i].OnLoad += fileName =>
+                saveItem.OnLoad += fileName =>
                 {
                     _startGameData.Init(StartType.LoadField, fileName);
-                    
                     _gameStateMachine.Enter<GameState>();
                 };
 
-                var index = i;
-                _menuWindowView.LoadFieldPanel.SaveItems[i].OnDelete += fileName =>
+                saveItem.OnDelete += fileName =>
                 {
-                    SaveItem saveItem = _menuWindowView.LoadFieldPanel.SaveItems[index];
-                    
                     _saveManager.DeleteSaveFile(fileName, SaveType.Template);
                     _menuWindowView.LoadFieldPanel.DeleteSaveItemFromWindow(saveItem);
                 };
@@ -86,21 +85,19 @@ namespace UI.Windows.Menu
         public void OnLoadGamePanelShow()
         {
             _menuWindowView.LoadGamePanel.AddButtonsToWindow();
-            
-            for (int i = 0; i < _menuWindowView.LoadGamePanel.SaveItems.Count; i++)
+    
+            List<SaveItem> saveItemsCopy = new List<SaveItem>(_menuWindowView.LoadGamePanel.SaveItems);
+
+            foreach (var saveItem in saveItemsCopy)
             {
-                _menuWindowView.LoadGamePanel.SaveItems[i].OnLoad += fileName =>
+                saveItem.OnLoad += fileName =>
                 {
                     _startGameData.Init(StartType.LoadProgress, fileName);
-            
                     _gameStateMachine.Enter<GameState>();
                 };
-                
-                var index = i;
-                _menuWindowView.LoadGamePanel.SaveItems[i].OnDelete += fileName =>
-                {
-                    SaveItem saveItem = _menuWindowView.LoadGamePanel.SaveItems[index];
 
+                saveItem.OnDelete += fileName =>
+                {
                     _saveManager.DeleteSaveFile(fileName, SaveType.Progress);
                     _menuWindowView.LoadGamePanel.DeleteSaveItemFromWindow(saveItem);
                 };
