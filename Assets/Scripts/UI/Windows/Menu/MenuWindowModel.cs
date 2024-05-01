@@ -1,6 +1,7 @@
 using Core.Data;
 using Core.Infrastructure.StateMachine;
 using Core.Infrastructure.States;
+using UI.Elements;
 using Zenject;
 
 namespace UI.Windows.Menu
@@ -10,13 +11,15 @@ namespace UI.Windows.Menu
         private GameStateMachine<IState> _gameStateMachine;
         private MenuWindowView _menuWindowView;
         private StartGameData _startGameData;
+        private SaveManager _saveManager;
 
         [Inject]
-        public MenuWindowModel(GameStateMachine<IState> gameStateMachine, MenuWindowView menuWindowView, StartGameData startGameData)
+        public MenuWindowModel(GameStateMachine<IState> gameStateMachine, MenuWindowView menuWindowView, StartGameData startGameData, SaveManager saveManager)
         {
             _gameStateMachine = gameStateMachine;
             _menuWindowView = menuWindowView;
             _startGameData = startGameData;
+            _saveManager = saveManager;
         }
         
         public void StartNewGame()
@@ -60,13 +63,22 @@ namespace UI.Windows.Menu
         {
             _menuWindowView.LoadFieldPanel.AddButtonsToWindow();
 
-            for (int i = 0; i < _menuWindowView.LoadFieldPanel.LoadButtons.Count; i++)
+            for (int i = 0; i < _menuWindowView.LoadFieldPanel.SaveItems.Count; i++)
             {
-                _menuWindowView.LoadFieldPanel.LoadButtons[i].OnLoad += fileName =>
+                _menuWindowView.LoadFieldPanel.SaveItems[i].OnLoad += fileName =>
                 {
                     _startGameData.Init(StartType.LoadField, fileName);
                     
                     _gameStateMachine.Enter<GameState>();
+                };
+
+                var index = i;
+                _menuWindowView.LoadFieldPanel.SaveItems[i].OnDelete += fileName =>
+                {
+                    SaveItem saveItem = _menuWindowView.LoadFieldPanel.SaveItems[index];
+                    
+                    _saveManager.DeleteSaveFile(fileName, SaveType.Template);
+                    _menuWindowView.LoadFieldPanel.DeleteSaveItemFromWindow(saveItem);
                 };
             }
         }
@@ -75,13 +87,22 @@ namespace UI.Windows.Menu
         {
             _menuWindowView.LoadGamePanel.AddButtonsToWindow();
             
-            for (int i = 0; i < _menuWindowView.LoadGamePanel.LoadButtons.Count; i++)
+            for (int i = 0; i < _menuWindowView.LoadGamePanel.SaveItems.Count; i++)
             {
-                _menuWindowView.LoadGamePanel.LoadButtons[i].OnLoad += fileName =>
+                _menuWindowView.LoadGamePanel.SaveItems[i].OnLoad += fileName =>
                 {
                     _startGameData.Init(StartType.LoadProgress, fileName);
             
                     _gameStateMachine.Enter<GameState>();
+                };
+                
+                var index = i;
+                _menuWindowView.LoadGamePanel.SaveItems[i].OnDelete += fileName =>
+                {
+                    SaveItem saveItem = _menuWindowView.LoadGamePanel.SaveItems[index];
+
+                    _saveManager.DeleteSaveFile(fileName, SaveType.Progress);
+                    _menuWindowView.LoadGamePanel.DeleteSaveItemFromWindow(saveItem);
                 };
             }
         }

@@ -12,13 +12,13 @@ namespace UI.Panels
     {
         [SerializeField] private RectTransform content;
         [SerializeField] private Button returnButton;
-        [SerializeField] private LoadButton loadButtonPrefab;
+        [SerializeField] private SaveItem saveItemPrefab;
         [SerializeField] private SaveType saveType;
 
         private SaveManager _saveManager;
         private CommonFactory _commonFactory;
 
-        public List<LoadButton> LoadButtons { get; private set; }
+        public List<SaveItem> SaveItems { get; private set; }
 
         public Button ReturnButton => returnButton;
         
@@ -31,31 +31,40 @@ namespace UI.Panels
 
         public override void Hide()
         {
-            if (LoadButtons == null)
+            if (SaveItems == null)
                 return;
             
             base.Hide();
 
-            for (int i = 0; i < LoadButtons.Count; i++)
+            for (int i = 0; i < SaveItems.Count; i++)
             {
-                Destroy(LoadButtons[i].gameObject);
+                Destroy(SaveItems[i].gameObject);
             }
 
-            LoadButtons.Clear();
+            SaveItems.Clear();
         }
 
         public void AddButtonsToWindow()
         {
-            LoadButtons = new List<LoadButton>();
+            SaveItems = new List<SaveItem>();
             List<string> saveFiles = _saveManager.GetSaveFiles(saveType);
 
             for (var i = 0; i < saveFiles.Count; i++)
             {
                 var saveName = saveFiles[i];
-                LoadButton loadButton = _commonFactory.Instantiate(loadButtonPrefab, content);
-                loadButton.Init(saveName);
-                LoadButtons.Add(loadButton);
+                SaveItem saveItem = _commonFactory.Instantiate(saveItemPrefab, content);
+                saveItem.Init(saveName);
+                SaveItems.Add(saveItem);
             }
+        }
+
+        public void DeleteSaveItemFromWindow(SaveItem saveItem)
+        {
+            if (!SaveItems.Contains(saveItem))
+                return;
+
+            SaveItems.Remove(saveItem);
+            Destroy(saveItem.gameObject);
         }
     }
 }

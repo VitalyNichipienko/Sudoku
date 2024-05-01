@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1790482065483932959}
   returnButton: {fileID: 4215019957787676767}
-  loadButtonPrefab: {fileID: 7175130763127567431, guid: 327c95be58bbf854987eb0afac7a6ce2, type: 3}
+  saveItemPrefab: {fileID: 7175130763127567431, guid: 327c95be58bbf854987eb0afac7a6ce2, type: 3}
   saveType: 0
 --- !u!1 &1640078980302048336
 GameObject:
