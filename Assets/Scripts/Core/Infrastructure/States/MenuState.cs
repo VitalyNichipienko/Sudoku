@@ -9,7 +9,7 @@ namespace Core.Infrastructure.States
         private UiManager _uiManager;
 
         [Inject]
-        private void Construct(UiManager uiManager)
+        public MenuState(UiManager uiManager)
         {
             _uiManager = uiManager;
         }

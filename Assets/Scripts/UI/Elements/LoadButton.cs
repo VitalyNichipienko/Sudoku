@@ -10,8 +10,6 @@ namespace UI.Elements
         [SerializeField] private Button button;
         [SerializeField] private TextMeshProUGUI fileName;
 
-        public Button Button => button;
-        
         public event Action<string> OnLoad; 
 
         public void Init(string saveName)

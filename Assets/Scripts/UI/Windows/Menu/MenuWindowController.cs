@@ -8,7 +8,7 @@ namespace UI.Windows.Menu
         private MenuWindowModel _menuWindowModel;
 
         [Inject]
-        private void Construct(MenuWindowView menuWindowView, MenuWindowModel menuWindowModel)
+        public MenuWindowController(MenuWindowView menuWindowView, MenuWindowModel menuWindowModel)
         {
             _menuWindowView = menuWindowView;
             _menuWindowModel = menuWindowModel;

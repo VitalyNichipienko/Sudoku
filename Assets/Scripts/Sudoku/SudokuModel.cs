@@ -23,7 +23,7 @@ namespace Sudoku
         public SudokuField GeneratedSudokuField => _generatedSudokuField;
 
         [Inject]
-        private void Construct(SudokuGenerator sudokuGenerator, SudokuFieldView sudokuFieldView, GameWindowView gameWindowView, SaveManager saveManager, StartGameData startGameData)
+        public SudokuModel(SudokuGenerator sudokuGenerator, SudokuFieldView sudokuFieldView, GameWindowView gameWindowView, SaveManager saveManager, StartGameData startGameData)
         {
             _sudokuGenerator = sudokuGenerator;
             _sudokuFieldView = sudokuFieldView;

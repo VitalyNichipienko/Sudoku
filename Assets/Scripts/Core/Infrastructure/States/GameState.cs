@@ -9,14 +9,10 @@ namespace Core.Infrastructure.States
         private UiManager _uiManager;
         
         [Inject]
-        private void Construct(UiManager uiManager)
-        {
+        public GameState(UiManager uiManager) => 
             _uiManager = uiManager;
-        }
-        
-        public void Enter()
-        {
+
+        public void Enter() => 
             _uiManager.ShowWindow<GameWindowView>();
-        }
     }
 }

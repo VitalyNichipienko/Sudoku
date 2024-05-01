@@ -14,7 +14,7 @@ namespace UI.Windows.Game
         private SudokuModel _sudokuModel;
 
         [Inject]
-        private void Construct(UiManager uiManager, SaveManager saveManager, SudokuModel sudokuModel)
+        public GameWindowModel(UiManager uiManager, SaveManager saveManager, SudokuModel sudokuModel)
         {
             _uiManager = uiManager;
             _saveManager = saveManager;

@@ -12,7 +12,7 @@ namespace UI.Windows.Menu
         private StartGameData _startGameData;
 
         [Inject]
-        private void Construct(GameStateMachine<IState> gameStateMachine, MenuWindowView menuWindowView, StartGameData startGameData)
+        public MenuWindowModel(GameStateMachine<IState> gameStateMachine, MenuWindowView menuWindowView, StartGameData startGameData)
         {
             _gameStateMachine = gameStateMachine;
             _menuWindowView = menuWindowView;

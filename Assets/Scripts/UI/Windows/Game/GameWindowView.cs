@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UI.Configurations;
-using UI.Sudoku;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,7 +9,6 @@ namespace UI.Windows.Game
 {
     public class GameWindowView : Window
     {
-        [SerializeField] private SudokuFieldView sudokuFieldView;
         [SerializeField] private Button checkButton;
         [SerializeField] private Button menuButton;
         [SerializeField] private TextMeshProUGUI resultText;
@@ -25,7 +23,6 @@ namespace UI.Windows.Game
         
         private UiConfiguration _uiConfiguration;
         
-        public SudokuFieldView SudokuFieldView => sudokuFieldView;
         public Button CheckButton => checkButton;
         public Button MenuButton => menuButton;
         public Button SaveProgressButton => saveProgressButton;
