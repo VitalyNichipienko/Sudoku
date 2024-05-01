@@ -12,7 +12,7 @@ namespace UI.Windows.Menu
         [SerializeField] private LoadPanel loadFieldPanel;
         [SerializeField] private LoadPanel loadGamePanel;
 
-        public List<Panel> Panels { get; private set; } = new List<Panel>();
+        public List<Panel> Panels { get; } = new();
 
         public MainMenuPanel MainMenuPanel => mainMenuPanel;
 

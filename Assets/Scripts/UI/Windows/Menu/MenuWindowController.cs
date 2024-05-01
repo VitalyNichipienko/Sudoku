@@ -16,6 +16,8 @@ namespace UI.Windows.Menu
         
         public void Initialize()
         {
+            _menuWindowView.WindowShown += _menuWindowModel.ReturnToMainMenu;
+            
             _menuWindowView.GenerateFieldPanel.StartButton.onClick.AddListener(_menuWindowModel.StartNewGame);
             _menuWindowView.GenerateFieldPanel.ReturnButton.onClick.AddListener(_menuWindowModel.ReturnToMainMenu);
             

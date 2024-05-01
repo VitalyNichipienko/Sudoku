@@ -9,6 +9,8 @@ namespace UI.Windows.Game
 {
     public class GameWindowModel
     {
+        private const string DateFormat = "yyyy-mm-dd_hh-mm-ss";
+        
         private UiManager _uiManager;
         private SaveManager _saveManager;
         private SudokuModel _sudokuModel;
@@ -49,7 +51,7 @@ namespace UI.Windows.Game
 
         private string CreateFileName()
         {
-            return "Save_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            return "Save_" + DateTime.Now.ToString(DateFormat);
         }
     }
 }
