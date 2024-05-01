@@ -6,13 +6,16 @@ namespace UI.Windows.Game
 {
     public class GameWindowController : IInitializable
     {
+        private const string FieldSaved = "Field saved";
+        private const string ProgressSaved = "Progress saved";
+        
         private GameWindowView _gameWindowView;
         private GameWindowModel _gameWindowModel;
         private SudokuModel _sudokuModel;
         private UiConfiguration _uiConfiguration;
 
         [Inject]
-        private void Construct(GameWindowView gameWindowView, GameWindowModel gameWindowModel, SudokuModel sudokuModel, UiConfiguration uiConfiguration)
+        public GameWindowController(GameWindowView gameWindowView, GameWindowModel gameWindowModel, SudokuModel sudokuModel, UiConfiguration uiConfiguration)
         {
             _gameWindowView = gameWindowView;
             _gameWindowModel = gameWindowModel;
@@ -28,13 +31,13 @@ namespace UI.Windows.Game
             _gameWindowView.SaveTemplateButton.onClick.AddListener(_gameWindowModel.SaveTemplate);
             _gameWindowView.SaveTemplateButton.onClick.AddListener(() =>
             {
-                _gameWindowView.ShowMessage("Field saved", _uiConfiguration.MessageTextColor);
+                _gameWindowView.ShowMessage(FieldSaved, _uiConfiguration.MessageTextColor);
             });
             
             _gameWindowView.SaveProgressButton.onClick.AddListener(_gameWindowModel.SaveProgress);
             _gameWindowView.SaveProgressButton.onClick.AddListener(() =>
             {
-                _gameWindowView.ShowMessage("Progress saved", _uiConfiguration.MessageTextColor);
+                _gameWindowView.ShowMessage(ProgressSaved, _uiConfiguration.MessageTextColor);
             });
         }
     }
