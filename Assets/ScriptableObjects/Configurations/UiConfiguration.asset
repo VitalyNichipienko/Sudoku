@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a958ec055712c428d63ae2a87e48b5, type: 3}
-  m_Name: BootstrapConfigsInstaller
+  m_Script: {fileID: 11500000, guid: 5a7081cb5b9069842b5a0ea7cbebcceb, type: 3}
+  m_Name: UiConfiguration
   m_EditorClassIdentifier: 
-  windowsPrefabsContainer: {fileID: 11400000, guid: 4b5787332faaadc4ea990ac238e862f9, type: 2}
-  uiConfiguration: {fileID: 11400000, guid: d3dcfa089f86ff64483e0143bbdb6ac2, type: 2}
+  trueSolutionColor: {r: 0.19607843, g: 1, b: 0, a: 1}
+  falseSolutionColor: {r: 1, g: 0.0990566, b: 0.0990566, a: 1}
+  messageTextColor: {r: 1, g: 0.7568628, b: 0.027450982, a: 1}
