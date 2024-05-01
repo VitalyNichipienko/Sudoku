@@ -5,30 +5,32 @@ namespace Sudoku
     public class SudokuGenerator
     {
         private const int ShuffleCount = 10;
+        private const int ShuffleAlgorithmsCount = 5;
+        
         private Cell[,] _sudokuField = new Cell[BlockSize * BlockSize, BlockSize * BlockSize];
         private int _cellsToHide;
         
         private static int BlockSize => Constants.BlockSize;
         
-        public void GetSudokuField(int cellsToHide, out SudokuField sudokuField, out SudokuField solution)
+        public void GetSudokuField(int cellsToHide, out SudokuField sudokuField, out SudokuField solutionField)
         {
             _cellsToHide = cellsToHide;
             
-            GenerateMap();
+            GenerateField();
 
             for (int i = 0; i < ShuffleCount; i++)
             {
-                ShuffleMap(Random.Range(0, 5));
+                ShuffleField(Random.Range(0, ShuffleAlgorithmsCount));
             }
 
-            solution = new SudokuField(_sudokuField);
+            solutionField = new SudokuField(_sudokuField);
             
             HideCells();
 
             sudokuField = new SudokuField(_sudokuField);
         }
 
-        private void GenerateMap()
+        private void GenerateField()
         {
             for (int i = 0; i < BlockSize * BlockSize; i++)
             {
@@ -39,7 +41,7 @@ namespace Sudoku
             }
         }
 
-        private void ShuffleMap(int i)
+        private void ShuffleField(int i)
         {
             switch (i)
             {

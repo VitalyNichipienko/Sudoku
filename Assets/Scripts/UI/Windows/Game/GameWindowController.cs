@@ -21,6 +21,9 @@ namespace UI.Windows.Game
         {
             _gameWindowView.MenuButton.onClick.AddListener(_gameWindowModel.ReturnToMenu);
             _gameWindowView.WindowShown += _sudokuModel.Init;
+            
+            _gameWindowView.SaveTemplateButton.onClick.AddListener(_gameWindowModel.SaveTemplate);
+            _gameWindowView.SaveProgressButton.onClick.AddListener(_gameWindowModel.SaveProgress);
         }
     }
 }

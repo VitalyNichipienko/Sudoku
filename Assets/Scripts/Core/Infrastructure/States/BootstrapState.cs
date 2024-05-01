@@ -1,3 +1,4 @@
+using Core.Infrastructure.SceneLoad;
 using Core.Infrastructure.StateMachine;
 using Zenject;
 
@@ -12,6 +13,6 @@ namespace Core.Infrastructure.States
             _stateMachine = stateMachine;
 
         public void Enter() => 
-            _stateMachine.Enter<LoadDataState>();
+            _stateMachine.Enter<LoadSceneState, LoadingScenes>(LoadingScenes.Game);
     }
 }

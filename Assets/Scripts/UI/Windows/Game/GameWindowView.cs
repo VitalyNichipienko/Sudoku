@@ -12,9 +12,14 @@ namespace UI.Windows.Game
         [SerializeField] private Button menuButton;
         [SerializeField] private TextMeshProUGUI resultText;
 
+        [SerializeField] private Button saveProgressButton;
+        [SerializeField] private Button saveTemplateButton;
+
         public SudokuFieldView SudokuFieldView => sudokuFieldView;
         public Button CheckButton => checkButton;
         public Button MenuButton => menuButton;
+        public Button SaveProgressButton => saveProgressButton;
+        public Button SaveTemplateButton => saveTemplateButton;
 
         public void ShowResult(bool isSolved)
         {

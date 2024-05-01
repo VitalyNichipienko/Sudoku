@@ -19,11 +19,12 @@ namespace UI.Windows.Menu
             _menuWindowView.GenerateFieldPanel.StartButton.onClick.AddListener(_menuWindowModel.StartNewGame);
             _menuWindowView.GenerateFieldPanel.ReturnButton.onClick.AddListener(_menuWindowModel.ReturnToMainMenu);
             
-            _menuWindowView.LoadFieldPanel.StartButton.onClick.AddListener(_menuWindowModel.StartNewGame);
             _menuWindowView.LoadFieldPanel.ReturnButton.onClick.AddListener(_menuWindowModel.ReturnToMainMenu);
+            _menuWindowView.LoadFieldPanel.PanelShown += _menuWindowModel.OnLoadFieldPanelShow;
             
-            _menuWindowView.LoadGamePanel.StartButton.onClick.AddListener(_menuWindowModel.StartNewGame);
+            
             _menuWindowView.LoadGamePanel.ReturnButton.onClick.AddListener(_menuWindowModel.ReturnToMainMenu);
+            _menuWindowView.LoadGamePanel.PanelShown += _menuWindowModel.OnLoadGamePanelShow;
             
             _menuWindowView.MainMenuPanel.NewGameButton.onClick.AddListener(_menuWindowModel.ShowNewGamePanel);
             _menuWindowView.MainMenuPanel.LoadGameButton.onClick.AddListener(_menuWindowModel.ShowLoadGamePanel);

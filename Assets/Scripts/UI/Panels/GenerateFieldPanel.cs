@@ -10,9 +10,6 @@ namespace UI.Panels
         [SerializeField] private TMP_InputField fieldComplexityInput;
         [SerializeField] private Button startButton;
         [SerializeField] private Button returnButton;
-
-        private const int MinValue = 10;
-        private const int MaxValue = 50;
         
         public Button StartButton => startButton;
         public Button ReturnButton => returnButton;
@@ -33,7 +30,7 @@ namespace UI.Panels
             try
             {
                 int value = Convert.ToInt32(newValue);
-                value = Mathf.Clamp(value, MinValue, MaxValue);
+                value = Mathf.Clamp(value, Constants.MinValueForComplexity, Constants.MaxValueForComplexity);
                 fieldComplexityInput.text = value.ToString();
             }
             catch (Exception e)

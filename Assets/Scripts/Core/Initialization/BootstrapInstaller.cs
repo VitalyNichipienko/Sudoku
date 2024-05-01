@@ -25,7 +25,11 @@ namespace Core.Initialization
             BindSaveManager();
             BindSceneLoader();
             BindGameStateMachine();
+            BindStartGameSettings();
         }
+
+        private void BindStartGameSettings() => 
+            Container.Bind<StartGameData>().AsSingle().NonLazy();
 
         private void BindCommonFactory() => 
             Container.Bind<CommonFactory>().FromInstance(new CommonFactory(Container)).AsSingle();
@@ -50,7 +54,6 @@ namespace Core.Initialization
             Dictionary<Type, IState> states = new Dictionary<Type, IState>
             {
                 [typeof(BootstrapState)] = Container.Instantiate<BootstrapState>(),
-                [typeof(LoadDataState)] = Container.Instantiate<LoadDataState>(),
                 [typeof(LoadSceneState)] = Container.Instantiate<LoadSceneState>(),
                 [typeof(MenuState)] = Container.Instantiate<MenuState>(),
                 [typeof(GameState)] = Container.Instantiate<GameState>()

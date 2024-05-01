@@ -9,8 +9,8 @@ namespace UI.Windows.Menu
         [SerializeField] private MainMenuPanel mainMenuPanel;
         [SerializeField] private NewGamePanel newGamePanel;
         [SerializeField] private GenerateFieldPanel generateFieldPanel;
-        [SerializeField] private LoadFieldPanel loadFieldPanel;
-        [SerializeField] private LoadGamePanel loadGamePanel;
+        [SerializeField] private LoadPanel loadFieldPanel;
+        [SerializeField] private LoadPanel loadGamePanel;
 
         public List<Panel> Panels { get; private set; } = new List<Panel>();
 
@@ -20,9 +20,9 @@ namespace UI.Windows.Menu
 
         public GenerateFieldPanel GenerateFieldPanel => generateFieldPanel;
 
-        public LoadFieldPanel LoadFieldPanel => loadFieldPanel;
+        public LoadPanel LoadFieldPanel => loadFieldPanel;
 
-        public LoadGamePanel LoadGamePanel => loadGamePanel;
+        public LoadPanel LoadGamePanel => loadGamePanel;
 
         private void Awake()
         {
