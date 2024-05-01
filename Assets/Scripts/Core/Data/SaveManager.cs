@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -13,6 +14,10 @@ namespace Core.Data
 
     public class SaveManager : MonoBehaviour
     {
+        public const string FileExtension = ".json";
+        public const string TemplateFileSuffix = "_template";
+        public const string ProgressFileSuffix = "_progress";
+        
         public void SaveTemplate(GeneratedFieldSaveData templateSave, string fileName)
         {
             SaveToFile(templateSave, fileName, SaveType.Template);
@@ -25,7 +30,7 @@ namespace Core.Data
 
         public T LoadFromFile<T>(string fileName)
         {
-            string filePath = Path.Combine(Constants.SaveDirectory, fileName + Constants.FileExtension);
+            string filePath = Path.Combine(Application.persistentDataPath, fileName + FileExtension);
             if (File.Exists(filePath))
             {
                 string jsonData = File.ReadAllText(filePath);
@@ -38,13 +43,13 @@ namespace Core.Data
 
         public List<string> GetSaveFiles(SaveType saveType)
         {
-            if (!Directory.Exists(Constants.SaveDirectory))
+            if (!Directory.Exists(Application.persistentDataPath))
             {
-                Directory.CreateDirectory(Constants.SaveDirectory);
+                Directory.CreateDirectory(Application.persistentDataPath);
             }
 
-            string searchPattern = saveType == SaveType.Template ? "*" + Constants.TemplateFileSuffix + Constants.FileExtension : "*" + Constants.ProgressFileSuffix + Constants.FileExtension;
-            string[] files = Directory.GetFiles(Constants.SaveDirectory, searchPattern);
+            string searchPattern = saveType == SaveType.Template ? "*" + TemplateFileSuffix + FileExtension : "*" + ProgressFileSuffix + FileExtension;
+            string[] files = Directory.GetFiles(Application.persistentDataPath, searchPattern);
             List<string> saveFiles = new List<string>();
 
             foreach (string file in files)
@@ -58,7 +63,7 @@ namespace Core.Data
 
         public void DeleteSaveFile(string fileName, SaveType saveType)
         {
-            string filePath = Path.Combine(Constants.SaveDirectory, fileName + Constants.FileExtension);
+            string filePath = Path.Combine(Application.persistentDataPath, fileName + FileExtension);
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -72,14 +77,14 @@ namespace Core.Data
         
         private void SaveToFile<T>(T data, string fileName, SaveType saveType)
         {
-            string filePath = Path.Combine(Constants.SaveDirectory, fileName + GetFileSuffix(saveType) + Constants.FileExtension);
+            string filePath = Path.Combine(Application.persistentDataPath, fileName + GetFileSuffix(saveType) + FileExtension);
             string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(filePath, jsonData);
         }
 
         private string GetFileSuffix(SaveType saveType)
         {
-            return saveType == SaveType.Template ? Constants.TemplateFileSuffix : Constants.ProgressFileSuffix;
+            return saveType == SaveType.Template ? TemplateFileSuffix : ProgressFileSuffix;
         }
     }
 }
