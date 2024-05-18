@@ -10,7 +10,7 @@
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/screenshot1.png" width="300" alt="GameWindow" />
-  <img src="screenshots/screenshot2.png" width="300" alt="LoadGameWindow" />
-  <img src="screenshots/screenshot3.png" width="300" alt="LoadFieldWindow" />
+  <img src="Screenshots/GameWindow.jpg" width="300" alt="GameWindow" />
+  <img src="Screenshots/LoadGameWindow.jpg" width="300" alt="LoadGameWindow" />
+  <img src="Screenshots/LoadFieldWindow.jpg" width="300" alt="LoadFieldWindow" />
 </p>
